@@ -1,0 +1,10 @@
+module.exports = {
+  minArgs: 1,
+  maxArgs: -1,
+  callback: ({ message, args }) => {
+    message.delete();
+    const sArgs = args.toString()
+    const msg = sArgs.replace(/,/g, " ")
+    message.channel.send(`${msg}\n||If this message is offensive or similar, please note it is made by a user, and you can report the message Jordan.#4534||`)
+  }
+}

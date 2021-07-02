@@ -1,0 +1,25 @@
+onst Discord  = require('discord.js')
+const client = new Discord.Client()
+const WOKCommands = require('wokcommands');
+
+// Hopefully REPL Stuff
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+
+
+global.botVersion = "1.0"
+
+client.on('ready', async () => {
+    console.log('ready')
+    client.user.setActivity("GitHub", { type: "PLAYING"});
+    new WOKCommands(client, {
+        commandsDir: 'commands',
+        featureDir: 'features'
+    }).setDefaultPrefix('Prefix')
+})
+    client.login(process.env.token)
